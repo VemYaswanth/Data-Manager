@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vault UI (MVP)</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        #fileList { margin-top: 20px; }
+        button { margin-left: 10px; }
+    </style>
+</head>
+<body>
+
+<h1>Vault File Manager (Day 4 MVP)</h1>
+
+<h3>Upload File</h3>
+<input type="file" id="fileInput" />
+<button onclick="uploadFile()">Upload</button>
+
+<h3>Files</h3>
+<div id="fileList"></div>
+
+<script>
+    async function loadFiles() {
+        const res = await fetch("http://127.0.0.1:8000/files");
+        const files = await res.json();
+
+        const container = document.getElementById("fileList");
+        container.innerHTML = "";
+
+        files.forEach(file => {
+            const div = document.createElement("div");
+            div.textContent = `${file.name} (${file.size} bytes)`;
+
+            const downloadBtn = document.createElement("button");
+            downloadBtn.textContent = "Download";
+            downloadBtn.onclick = () => {
+                window.location = `http://127.0.0.1:8000/download/${file.id}`;
+            };
+
+            const deleteBtn = document.createElement("button");
+            deleteBtn.textContent = "Delete";
+            deleteBtn.onclick = async () => {
+                await fetch(`http://127.0.0.1:8000/files/${file.id}`, { method: "DELETE" });
+                loadFiles();
+            };
+
+            div.appendChild(downloadBtn);
+            div.appendChild(deleteBtn);
+            container.appendChild(div);
+        });
+    }
+
+    async function uploadFile() {
+        const input = document.getElementById("fileInput");
+        if (!input.files.length) return alert("Select a file first");
+
+        const form = new FormData();
+        form.append("file", input.files[0]);
+
+        await fetch("http://127.0.0.1:8000/upload", { method: "POST", body: form });
+
+        loadFiles();
+    }
+
+    loadFiles();
+</script>
+
+</body>
+</html>
