@@ -1,0 +1,162 @@
+2025-12-07 09:57:10,170 - ERROR - Decryption failed for a.txt: Incorrect IV length (it must be 16 bytes long)
+2025-12-07 09:59:33,242 - INFO - Encrypted + uploaded: vault.log
+2025-12-07 10:01:58,096 - INFO - Decrypted + downloaded: vault.log
+2025-12-07 10:09:38,503 - INFO - Encrypted + uploaded: Story of Voati Web Technologies.docx
+2025-12-07 10:10:37,537 - INFO - Decrypted + downloaded: Story of Voati Web Technologies.docx
+2025-12-07 10:11:21,105 - INFO - Decrypted + downloaded: Story of Voati Web Technologies.docx
+2025-12-07 10:12:21,968 - ERROR - Download failed – metadata missing for id 6
+2025-12-07 10:12:52,643 - WARNING - Expected boundary character 45, got 69 at index 2
+2025-12-07 10:13:21,626 - INFO - Encrypted + uploaded: CS701_Graduate_Project_Kickoff_YaswanthVemulapalli.pdf
+2025-12-07 10:13:23,267 - INFO - Decrypted + downloaded: CS701_Graduate_Project_Kickoff_YaswanthVemulapalli.pdf
+2025-12-07 10:13:33,310 - INFO - Encrypted + uploaded: CS701_Graduate_Project_Kickoff_YaswanthVemulapalli.pdf
+2025-12-07 10:13:34,652 - ERROR - Upload blocked – file exists: CS701_Graduate_Project_Kickoff_YaswanthVemulapalli.pdf
+2025-12-07 10:13:36,990 - ERROR - Upload blocked – file exists: CS701_Graduate_Project_Kickoff_YaswanthVemulapalli.pdf
+2025-12-07 10:13:37,310 - ERROR - Upload blocked – file exists: CS701_Graduate_Project_Kickoff_YaswanthVemulapalli.pdf
+2025-12-07 10:13:37,493 - ERROR - Upload blocked – file exists: CS701_Graduate_Project_Kickoff_YaswanthVemulapalli.pdf
+2025-12-07 10:14:32,502 - INFO - Decrypted + downloaded: CS701_Graduate_Project_Kickoff_YaswanthVemulapalli.pdf
+2025-12-07 10:16:00,731 - INFO - Encrypted + uploaded: a.txt
+2025-12-07 10:16:14,945 - INFO - Decrypted + downloaded: a.txt
+2025-12-07 10:17:24,610 - ERROR - Decryption failed for a.txt: Data must be padded to 16 byte boundary in CBC mode
+2025-12-07 10:18:20,811 - ERROR - Encrypted file missing on disk: C:\Users\yaswa\OneDrive\Desktop\Monroe University\Projects\Data-Manager\storage\a.txt
+2025-12-07 10:45:56,927 - INFO - Uploaded & encrypted: a.txt
+2025-12-07 10:46:08,143 - ERROR - Upload blocked — file already exists: a.txt
+2025-12-07 10:46:11,910 - INFO - Deleted: a.txt
+2025-12-08 09:44:11,778 - INFO - Project created: Personal Files (id=2)
+2025-12-08 09:55:28,405 - INFO - Uploaded new version for project 'Personal Files': Course Plan.pdf (v1)
+2025-12-08 09:59:51,853 - INFO - Uploaded new version for project 'Personal Files': Course Plan.pdf (v2)
+2025-12-08 10:00:01,834 - INFO - Uploaded new version for project 'Personal Files': Course Plan.pdf (v3)
+2025-12-08 10:00:03,504 - INFO - Uploaded new version for project 'Personal Files': Course Plan.pdf (v4)
+2025-12-08 10:00:04,251 - INFO - Uploaded new version for project 'Personal Files': Course Plan.pdf (v5)
+2025-12-08 10:00:04,913 - INFO - Uploaded new version for project 'Personal Files': Course Plan.pdf (v6)
+2025-12-08 10:00:05,546 - INFO - Uploaded new version for project 'Personal Files': Course Plan.pdf (v7)
+2025-12-08 10:00:06,145 - INFO - Uploaded new version for project 'Personal Files': Course Plan.pdf (v8)
+2025-12-08 10:01:00,926 - INFO - Decrypted + ready for download: Course Plan.pdf
+2025-12-08 11:53:52,691 - INFO - Vault backend initialized.
+2025-12-08 12:14:36,664 - INFO - Vault backend initialized.
+2025-12-08 12:14:40,308 - INFO - Vault backend initialized.
+2025-12-08 12:14:41,261 - INFO - Vault backend initialized.
+2025-12-08 12:14:42,137 - INFO - Vault backend initialized.
+2025-12-08 12:28:25,498 - INFO - Vault backend initialized.
+2025-12-08 12:30:04,585 - INFO - Vault backend initialized.
+2025-12-08 12:30:08,334 - INFO - Vault backend initialized.
+2025-12-08 12:30:41,285 - INFO - Vault backend initialized.
+2025-12-08 12:30:48,861 - INFO - Vault backend initialized.
+2025-12-08 12:39:58,466 - INFO - Vault backend initialized.
+2025-12-08 12:51:39,173 - INFO - Use pytorch device_name: cpu
+2025-12-08 12:51:39,174 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-12-08 12:51:42,040 - WARNING - Xet Storage is enabled for this repo, but the 'hf_xet' package is not installed. Falling back to regular HTTP download. For better performance, install the package with: `pip install huggingface_hub[hf_xet]` or `pip install hf_xet`
+2025-12-08 12:51:48,641 - INFO - Vault backend initialized.
+2025-12-08 12:51:57,662 - INFO - Use pytorch device_name: cpu
+2025-12-08 12:51:57,662 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-12-08 12:51:59,647 - INFO - Vault backend initialized.
+2025-12-08 12:52:44,216 - INFO - Use pytorch device_name: cpu
+2025-12-08 12:52:44,216 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-12-08 12:52:46,345 - INFO - Vault backend initialized.
+2025-12-08 12:52:55,454 - INFO - Use pytorch device_name: cpu
+2025-12-08 12:52:55,454 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-12-08 12:52:57,558 - INFO - Vault backend initialized.
+2025-12-08 12:53:09,262 - INFO - Use pytorch device_name: cpu
+2025-12-08 12:53:09,262 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-12-08 12:53:11,625 - INFO - Vault backend initialized.
+2025-12-08 12:53:35,296 - INFO - Use pytorch device_name: cpu
+2025-12-08 12:53:35,297 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-12-08 12:53:37,365 - INFO - Vault backend initialized.
+2025-12-08 12:53:52,433 - INFO - Use pytorch device_name: cpu
+2025-12-08 12:53:52,433 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-12-08 12:53:54,910 - INFO - Vault backend initialized.
+2025-12-08 12:58:29,899 - INFO - Use pytorch device_name: cpu
+2025-12-08 12:58:29,900 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-12-08 12:58:32,809 - INFO - Vault backend initialized.
+2025-12-08 13:00:11,364 - INFO - Use pytorch device_name: cpu
+2025-12-08 13:00:11,364 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-12-08 13:00:14,401 - INFO - Vault backend initialized.
+2025-12-08 13:01:05,677 - INFO - Use pytorch device_name: cpu
+2025-12-08 13:01:05,678 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-12-08 13:01:28,205 - INFO - Use pytorch device_name: cpu
+2025-12-08 13:01:28,205 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-12-08 13:02:30,763 - INFO - Use pytorch device_name: cpu
+2025-12-08 13:02:30,764 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-12-08 13:02:33,799 - INFO - Vault backend initialized.
+2025-12-08 13:03:22,602 - INFO - Use pytorch device_name: cpu
+2025-12-08 13:03:22,603 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-12-08 13:03:24,955 - INFO - Vault backend initialized.
+2025-12-08 13:03:44,497 - INFO - Use pytorch device_name: cpu
+2025-12-08 13:03:44,497 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-12-08 13:03:47,481 - INFO - Vault backend initialized.
+2025-12-08 13:04:58,454 - INFO - Use pytorch device_name: cpu
+2025-12-08 13:04:58,454 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-12-08 13:05:01,325 - INFO - Vault backend initialized.
+2025-12-08 13:05:28,092 - INFO - Use pytorch device_name: cpu
+2025-12-08 13:05:28,093 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-12-08 13:05:31,006 - INFO - Vault backend initialized.
+2025-12-08 13:05:51,332 - INFO - Use pytorch device_name: cpu
+2025-12-08 13:05:51,333 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-12-08 13:06:13,965 - INFO - Use pytorch device_name: cpu
+2025-12-08 13:06:13,966 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-12-08 13:07:31,895 - INFO - Use pytorch device_name: cpu
+2025-12-08 13:07:31,895 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-12-08 13:11:40,785 - INFO - Use pytorch device_name: cpu
+2025-12-08 13:11:40,786 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-12-08 13:12:11,420 - INFO - Use pytorch device_name: cpu
+2025-12-08 13:12:11,420 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-12-08 13:12:31,865 - INFO - Use pytorch device_name: cpu
+2025-12-08 13:12:31,866 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-12-08 13:13:44,098 - INFO - Use pytorch device_name: cpu
+2025-12-08 13:13:44,099 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-12-08 13:17:11,888 - INFO - Use pytorch device_name: cpu
+2025-12-08 13:17:11,888 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-12-08 13:17:33,364 - INFO - Use pytorch device_name: cpu
+2025-12-08 13:17:33,365 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-12-08 13:25:51,399 - INFO - Use pytorch device_name: cpu
+2025-12-08 13:25:51,399 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-12-08 13:25:53,408 - INFO - Vault backend initialized.
+2025-12-08 13:38:07,932 - INFO - Use pytorch device_name: cpu
+2025-12-08 13:38:07,933 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-12-08 13:38:10,687 - INFO - Vault backend initialized.
+2025-12-08 13:38:29,640 - INFO - Use pytorch device_name: cpu
+2025-12-08 13:38:29,644 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-12-08 13:38:32,664 - INFO - Vault backend initialized.
+2025-12-08 13:38:46,072 - INFO - Use pytorch device_name: cpu
+2025-12-08 13:38:46,072 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-12-08 13:38:58,582 - INFO - Use pytorch device_name: cpu
+2025-12-08 13:38:58,582 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-12-08 13:39:00,485 - ERROR - Local LLM not loaded: No module named 'gpt4all'
+2025-12-08 13:39:00,529 - INFO - Vault backend initialized.
+2025-12-08 13:39:09,324 - INFO - Use pytorch device_name: cpu
+2025-12-08 13:39:09,324 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-12-08 13:39:11,209 - ERROR - Local LLM not loaded: No module named 'gpt4all'
+2025-12-08 13:39:11,251 - INFO - Vault backend initialized.
+2025-12-08 14:08:21,933 - INFO - Use pytorch device_name: cpu
+2025-12-08 14:08:21,934 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-12-08 14:08:25,204 - ERROR - Local LLM not loaded: No module named 'gpt4all'
+2025-12-08 14:08:25,331 - INFO - Vault backend initialized.
+2025-12-08 14:08:38,200 - INFO - Use pytorch device_name: cpu
+2025-12-08 14:08:38,200 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-12-08 14:08:40,170 - ERROR - Local LLM not loaded: No module named 'gpt4all'
+2025-12-08 14:08:40,213 - INFO - Vault backend initialized.
+2025-12-08 14:10:03,541 - INFO - Use pytorch device_name: cpu
+2025-12-08 14:10:03,541 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-12-08 14:10:05,763 - ERROR - Local LLM not loaded: No module named 'gpt4all'
+2025-12-08 14:10:05,825 - INFO - Vault backend initialized.
+2025-12-08 14:12:24,298 - INFO - Use pytorch device_name: cpu
+2025-12-08 14:12:24,299 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-12-08 14:12:34,664 - ERROR - Local LLM not loaded: No module named 'gpt4all'
+2025-12-08 14:22:31,770 - INFO - Use pytorch device_name: cpu
+2025-12-08 14:22:31,771 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-12-08 14:22:34,643 - ERROR - Local LLM not loaded: No module named 'gpt4all'
+2025-12-08 14:23:32,935 - INFO - Use pytorch device_name: cpu
+2025-12-08 14:23:32,936 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-12-08 14:23:36,349 - ERROR - Local LLM not loaded: No module named 'gpt4all'
+2025-12-08 14:23:36,504 - INFO - Vault backend initialized.
+2025-12-08 14:24:30,320 - INFO - Use pytorch device_name: cpu
+2025-12-08 14:24:30,320 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-12-08 14:24:33,614 - ERROR - Local LLM not loaded: No module named 'gpt4all'
+2025-12-08 14:24:33,737 - INFO - Vault backend initialized.
+2025-12-08 14:24:54,397 - INFO - Use pytorch device_name: cpu
+2025-12-08 14:24:54,398 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-12-08 14:24:57,594 - ERROR - Local LLM not loaded: No module named 'gpt4all'
+2025-12-08 14:24:57,708 - INFO - Vault backend initialized.
+2025-12-08 14:26:54,386 - INFO - Use pytorch device_name: cpu
+2025-12-08 14:26:54,386 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-12-08 14:26:56,334 - ERROR - Local LLM not loaded: No module named 'gpt4all'
+2025-12-08 14:26:56,381 - INFO - Vault backend initialized.

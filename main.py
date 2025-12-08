@@ -1,176 +1,150 @@
-from fastapi import FastAPI, UploadFile, File, HTTPException
-from fastapi.responses import StreamingResponse
+# main.py
+
+from fastapi import FastAPI, UploadFile, File
 from fastapi.staticfiles import StaticFiles
+from fastapi.responses import StreamingResponse
+from fastapi.middleware.cors import CORSMiddleware
 
-import os
-from datetime import datetime
-
-from core.logger import logger
 from core.db_init import init_db
-from core.config import STORAGE_DIR
+from core.logger import logger
 
-from file_system.folder_scanner import scan_and_index
+from routes.analytics_routes import router as analytics_router
+
+from routes.tag_routes import router as tag_router
+from routes.search_routes import router as search_router
+from routes.index_routes import router as index_router
+from routes.search_routes import router as search_router
+from routes.ai_routes import router as ai_router
+
+# File services
 from services.file_service import (
-    get_all_files,
-    insert_file_metadata,
-    get_file_by_id,
-    delete_file_metadata,
+    handle_upload,
+    handle_download,
+    handle_delete,
+)
+from services.file_service_db import get_all_files
+
+# Consistency tools
+from services.consistency_service import check_consistency, auto_repair
+
+# Project router (projects + versioning)
+from routes.project_routes import router as project_router
+from routes.search_routes import router as search_router
+
+
+# -------------------------------------------------------
+# App Initialization
+# -------------------------------------------------------
+
+app = FastAPI(title="Vault Backend")
+
+
+# -------------------------------------------------------
+# CORS (required for Phase 4 UI)
+# -------------------------------------------------------
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # eventually replace with tailscale domain patterns
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
-from encryption.crypto_engine import encrypt_bytes, decrypt_bytes
-from services.consistency_service import check_consistency
 
-# ============================================================
-# INIT
-# ============================================================
-app = FastAPI(title="Vault Backend")
+# -------------------------------------------------------
+# Routers
+# -------------------------------------------------------
+
+app.include_router(project_router)
+app.include_router(analytics_router)
+app.include_router(project_router)
+app.include_router(tag_router)
+app.include_router(search_router)
+app.include_router(index_router)
+app.include_router(search_router)
+app.include_router(ai_router)
+
+
+# -------------------------------------------------------
+# Static UI (Frontend)
+# -------------------------------------------------------
+
 app.mount("/ui", StaticFiles(directory="frontend", html=True), name="ui")
 
-ALLOWED_MAX_SIZE = 500 * 1024 * 1024  # 500 MB max size
 
+# -------------------------------------------------------
+# Startup
+# -------------------------------------------------------
 
-# ============================================================
-# STARTUP
-# ============================================================
 @app.on_event("startup")
 def startup_event():
     init_db()
+    logger.info("Vault backend initialized.")
 
 
-# ============================================================
-# HEALTH
-# ============================================================
+# -------------------------------------------------------
+# System Endpoints
+# -------------------------------------------------------
+
 @app.get("/")
-def root():
-    return {"status": "Vault backend is running"}
+def health():
+    return {"status": "running"}
 
 
-# ============================================================
-# CONSISTENCY CHECK + REPAIR
-# ============================================================
-@app.get("/consistency")
-def consistency_check():
-    missing = check_consistency()
-    logger.info(f"Consistency check found {len(missing)} missing files")
-    return {"missing_files": missing}
+# -------------------------------------------------------
+# Upload / Download / Delete (root-level)
+# -------------------------------------------------------
+
+@app.post("/upload")
+async def upload_file(file: UploadFile = File(...)):
+    return await handle_upload(file)
 
 
-@app.post("/repair")
-def repair():
-    missing = check_consistency()
-    for fid in missing:
-        delete_file_metadata(fid)
+@app.get("/download/{file_id}")
+def download_file(file_id: int):
+    filename, decrypted_bytes = handle_download(file_id)
 
-    logger.info(f"Repaired DB – removed {len(missing)} missing entries")
-    return {"fixed": len(missing)}
-
-
-# ============================================================
-# SCAN
-# ============================================================
-@app.post("/scan")
-def scan_files():
-    scan_and_index()
-    return {"message": "Scan complete"}
+    return StreamingResponse(
+        iter([decrypted_bytes]),
+        media_type="application/octet-stream",
+        headers={"Content-Disposition": f'attachment; filename="{filename}"'}
+    )
 
 
-# ============================================================
-# LIST FILES
-# ============================================================
+@app.delete("/files/{file_id}")
+def delete_file(file_id: int):
+    return handle_delete(file_id)
+
+
 @app.get("/files")
 def list_files():
     return get_all_files()
 
 
-# ============================================================
-# UPLOAD + ENCRYPT
-# ============================================================
-@app.post("/upload")
-async def upload_file(file: UploadFile = File(...)):
-    if file.filename.strip() == "":
-        raise HTTPException(status_code=400, detail="Invalid filename")
+# -------------------------------------------------------
+# Integrity + Repair Endpoints
+# -------------------------------------------------------
 
-    raw_bytes = await file.read()
-
-    # Size limit
-    if len(raw_bytes) > ALLOWED_MAX_SIZE:
-        logger.error(f"Upload failed – file too large: {file.filename}")
-        raise HTTPException(status_code=400, detail="File too large")
-
-    file_path = os.path.join(STORAGE_DIR, file.filename)
-
-    # Prevent overwriting (for your future version-control system)
-    if os.path.exists(file_path):
-        logger.error(f"Upload blocked – file exists: {file.filename}")
-        raise HTTPException(status_code=409, detail="File already exists")
-
-    encrypted_bytes = encrypt_bytes(raw_bytes)
-
-    # Save encrypted
-    with open(file_path, "wb") as f:
-        f.write(encrypted_bytes)
-
-    now = datetime.utcnow().isoformat()
-    insert_file_metadata(
-        name=file.filename,
-        path=file.filename,
-        size=len(encrypted_bytes),
-        created_at=now,
-        modified_at=now,
-    )
-
-    logger.info(f"Encrypted + uploaded: {file.filename}")
-    return {"message": "File encrypted & uploaded"}
+@app.get("/consistency")
+def consistency_check():
+    missing = check_consistency()
+    return {"missing_files": missing}
 
 
-# ============================================================
-# DOWNLOAD + DECRYPT
-# ============================================================
-@app.get("/download/{file_id}")
-def download_file(file_id: int):
-    file = get_file_by_id(file_id)
-    if not file:
-        logger.error(f"Download failed – metadata missing for id {file_id}")
-        raise HTTPException(status_code=404, detail="File not found")
+@app.post("/repair")
+def repair_db_only():
+    """Remove DB entries for missing files. Does NOT touch disk."""
+    missing = check_consistency()
+    from services.file_service_db import delete_file_metadata
 
-    abs_path = os.path.join(STORAGE_DIR, file["path"])
+    for fid in missing:
+        delete_file_metadata(fid)
 
-    if not os.path.exists(abs_path):
-        logger.error(f"Encrypted file missing on disk: {abs_path}")
-        delete_file_metadata(file_id)
-        raise HTTPException(status_code=404, detail="File missing – metadata cleaned")
-
-    with open(abs_path, "rb") as f:
-        encrypted = f.read()
-
-    try:
-        decrypted = decrypt_bytes(encrypted)
-    except Exception as e:
-        logger.error(f"Decryption failed for {file['name']}: {str(e)}")
-        raise HTTPException(status_code=500, detail="Decryption failed")
-
-    logger.info(f"Decrypted + downloaded: {file['name']}")
-
-    return StreamingResponse(
-        iter([decrypted]),
-        media_type="application/octet-stream",
-        headers={"Content-Disposition": f'attachment; filename="{file["name"]}"'}
-    )
+    return {"fixed": len(missing)}
 
 
-# ============================================================
-# DELETE
-# ============================================================
-@app.delete("/files/{file_id}")
-def delete_file(file_id: int):
-    file = get_file_by_id(file_id)
-    if not file:
-        raise HTTPException(status_code=404, detail="File not found")
-
-    abs_path = os.path.join(STORAGE_DIR, file["path"])
-
-    if os.path.exists(abs_path):
-        os.remove(abs_path)
-
-    delete_file_metadata(file_id)
-    return {"message": "File deleted"}
+@app.post("/repair/full")
+def repair_full():
+    """Full repair: orphan cleanup + DB fix."""
+    return auto_repair()

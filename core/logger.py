@@ -1,19 +1,13 @@
+import logging
 import os
-from core.config import STORAGE_DIR, DB_PATH
-import sqlite3
+from core.config import BASE_DIR
 
-def check_consistency():
-    conn = sqlite3.connect(DB_PATH)
-    cur = conn.cursor()
-    cur.execute("SELECT id, path FROM files")
-    rows = cur.fetchall()
+LOG_PATH = os.path.join(BASE_DIR, "vault.log")
 
-    missing = []
+logging.basicConfig(
+    filename=LOG_PATH,
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s"
+)
 
-    for file_id, path in rows:
-        abs_path = os.path.join(STORAGE_DIR, path)
-        if not os.path.exists(abs_path):
-            missing.append(file_id)
-
-    conn.close()
-    return missing
+logger = logging.getLogger("vault")
