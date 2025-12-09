@@ -15,6 +15,8 @@ from routes.search_routes import router as search_router
 from routes.index_routes import router as index_router
 from routes.search_routes import router as search_router
 from routes.ai_routes import router as ai_router
+from routes.session_routes import router as session_router
+from routes.preview_routes import router as preview_router
 
 # File services
 from services.file_service import (
@@ -64,7 +66,8 @@ app.include_router(search_router)
 app.include_router(index_router)
 app.include_router(search_router)
 app.include_router(ai_router)
-
+app.include_router(session_router)
+app.include_router(preview_router)
 
 # -------------------------------------------------------
 # Static UI (Frontend)
